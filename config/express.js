@@ -122,4 +122,29 @@ module.exports = function (app, passport) {
       next();
     });
   }
+
+  // Added other domains you want the server to give access to
+  // WARNING - Be careful with what origins you give access to
+  app.use(function(req, res, next) {
+    var allowedHost = [
+      'http://localhost:8000'
+    ];
+
+    if(allowedHost.indexOf(req.headers.origin) !== -1) {
+      res.header('Access-Control-Allow-Credentials', true);
+      res.header('Access-Control-Allow-Origin', req.headers.origin)
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+      res.header('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+
+      // intercept OPTIONS method
+      if ('OPTIONS' == req.method) {
+        res.send(200);
+      }
+      else {
+        next();
+      }      
+    } else {
+      res.send({auth: false});
+    }
+  });
 };

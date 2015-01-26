@@ -19,3 +19,17 @@ exports.create = function (req, res) {
   	res.send(_visit);
   });
 };
+
+/* Get all the visits */
+exports.getAll = function (req, res) {
+  res.send({
+    lol: "siema",
+    property: 123
+  });
+  // Visit.find({}, function (err, _visits) {
+  //   if(err) {
+  //     return res.send(err);
+  //   }
+  //   res.send(_visits);
+  // });
+}

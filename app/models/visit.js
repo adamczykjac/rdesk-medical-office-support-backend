@@ -40,7 +40,7 @@ VisitSchema.static({
 });
 
 /**
- * Register
+ * Register model
  */
 
 mongoose.model('Visit', VisitSchema);

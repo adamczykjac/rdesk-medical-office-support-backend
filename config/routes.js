@@ -20,6 +20,7 @@ module.exports = function (app, passport) {
   app.get('/patients', patient.getAll);
   /* Visits */
   app.post('/visits/new', visit.create);
+  app.get('/visits', visit.getAll);
 
   /**
    * Error handling

@@ -11,7 +11,7 @@ exports.create = function (req, res) {
   var patient = new Patient(patientData);
   console.log(patient.name.full);
   console.log(patient.birthdate);
-  patient.save(function (_patient, err) {
+  patient.save(function (err, _patient) {
   	if(err) {
   		res.send(err);
   		return err;
@@ -21,7 +21,7 @@ exports.create = function (req, res) {
 };
 
 exports.getAll = function (req, res) {
-  Patient.find({}, function (_patients, err) {
+  Patient.find({}, function (err, _patients) {
     if(err) {
       return res.send(err);
     }

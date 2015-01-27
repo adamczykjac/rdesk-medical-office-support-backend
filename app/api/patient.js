@@ -3,7 +3,7 @@
  */
 
 var mongoose = require('mongoose');
-var Patient = mongoose.model("Patient");
+var Patient = mongoose.model('Patient');
  
 /* Create new Patient */
 exports.create = function (req, res) {

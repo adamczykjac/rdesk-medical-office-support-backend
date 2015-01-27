@@ -4,6 +4,7 @@
 
 var mongoose = require('mongoose');
 var Visit = mongoose.model("Visit");
+var ReportCtrl = require('../controllers/report');
  
 /* Create new visit */
 exports.create = function (req, res) {
@@ -32,4 +33,9 @@ exports.getAll = function (req, res) {
   //   }
   //   res.send(_visits);
   // });
+}
+
+/* Generates pdf reports */
+exports.getReports = function (req, res) {
+  ReportCtrl.render();
 }

@@ -5,7 +5,7 @@
 
 var mongoose = require('mongoose');
 
-  /* route controllers */
+/* route controllers */
 var visit = require('visit');
 var patient = require('patient');
 
@@ -21,6 +21,7 @@ module.exports = function (app, passport) {
   /* Visits */
   app.post('/visits/new', visit.create);
   app.get('/visits', visit.getAll);
+  app.get('/visits/:id/reports', visit.getReports);
 
   /**
    * Error handling

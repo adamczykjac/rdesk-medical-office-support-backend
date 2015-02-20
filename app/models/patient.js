@@ -15,7 +15,8 @@ var PatientSchema = new Schema({
     second: {type: String, default: ''},
     last: {type: String, default: ''},
   },
-  pesel: {type: Number, default: ''},
+  pesel: {type: Number, default: null},
+  birthdate: {type: Date, default: Date.now},
   email: {type: String, default: ''},
   occupation: {type: String, default: ''}
 });
@@ -46,16 +47,6 @@ PatientSchema
     return this.name.first + ' '
         + (this.name.second ? (this.name.second + ' ') : '')
         + this.name.last;
-});
-
-PatientSchema
-  .virtual('birthdate')
-  .get(function () {
-    var peselString = this.pesel.toString();
-    return new Date(
-      peselString.substring(0, 2), 
-      peselString.substring(2, 4) - 1, 
-      peselString.substring(4, 6));
 });
 
 /**

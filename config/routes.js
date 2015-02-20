@@ -16,10 +16,10 @@ var patient = require('patient');
 module.exports = function (app, passport) {
 
   /* Patients */
-  app.post('/patients/new', patient.create);
+  app.post('/patients', patient.create);
   app.get('/patients', patient.getAll);
   /* Visits */
-  app.post('/visits/new', visit.create);
+  app.post('/visits', visit.create);
   app.get('/visits', visit.getAll);
   app.get('/visits/:id/reports', visit.getReports);
 

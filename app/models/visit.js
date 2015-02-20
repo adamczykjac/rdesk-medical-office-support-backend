@@ -11,9 +11,12 @@ var Schema = mongoose.Schema;
  */
 
 var VisitSchema = new Schema({
-	patient: { type: Schema.Types.ObjectId, ref: 'patient' },
+	patient: { type: Schema.Types.ObjectId, ref: 'Patient' },
   date: { type: Date, default: Date.now },
-	price: { type: Number, default: null }
+	price: { type: Number, default: null },
+	decision: { type: Boolean, default: null },
+	remarks: { type: String, default: '' },
+	status: { type: String, enum: ['draft', 'complete'] },
 });
 
 /**

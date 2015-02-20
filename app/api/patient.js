@@ -9,8 +9,6 @@ var Patient = mongoose.model('Patient');
 exports.create = function (req, res) {
 	var patientData = req.body;
   var patient = new Patient(patientData);
-  console.log(patient.name.full);
-  console.log(patient.birthdate);
   patient.save(function (err, _patient) {
   	if(err) {
   		res.send(err);
@@ -27,4 +25,4 @@ exports.getAll = function (req, res) {
     }
     res.send(_patients);
   });
-}
+};

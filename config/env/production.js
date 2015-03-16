@@ -4,5 +4,5 @@
  */
 
 module.exports = {
-  db: 'mongodb://localhost/docgenerator_production'
+  db: 'mongodb://localhost/rdesk_production'
 };

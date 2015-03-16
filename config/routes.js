@@ -15,13 +15,16 @@ var patient = require('patient');
 
 module.exports = function (app, passport) {
 
+  app.get('/', function(req, res) {
+    res.render('home/index.html');
+  });
   /* Patients */
-  app.post('/patients', patient.create);
-  app.get('/patients', patient.getAll);
+  app.post('/api/patients', patient.create);
+  app.get('/api/patients', patient.getAll);
   /* Visits */
-  app.post('/visits', visit.create);
-  app.get('/visits', visit.getAll);
-  app.get('/visits/:id/reports', visit.getReports);
+  app.post('/api/visits', visit.create);
+  app.get('/api/visits', visit.getAll);
+  app.get('/api/visits/:id/reports', visit.getReports);
 
   /**
    * Error handling

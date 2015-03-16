@@ -1,15 +1,33 @@
-{% extends '../layouts/default.html' %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 
-{% block main %}
-  <h2>{{ title }}</h2>
-{% endblock %}
+    <title>rDesk - medical support</title>
 
-{% block content %}
-  <ol>
-    <li>Awesome! Now add some routes, models, views and controllers.</li>
-    <li>
-      Change the content of
-      <code>app/views/home/index.html</code>
-    </li>
-  </ol>
-{% endblock %}
+    <!-- Application styles. -->
+    <!-- build:[href] /styles.min.css -->
+    <link rel="stylesheet" href="/app/styles/index.css">
+    <!-- /build -->
+</head>
+
+<body>
+<!-- Application container. -->
+<section id="app">
+    <header id="header"></header>
+    <section id="main" class="container">
+        <!-- <input id="toggle-all" type="checkbox"> -->
+        <!-- <label for="toggle-all">Mark all as complete</label> -->
+        <!-- <ul id="todo-list"></ul> -->
+    </section>
+    <footer id="footer"></footer>
+</section>
+<!-- Application source. -->
+<!-- build:[src] /source.min.js -->
+<script src="/bower_components/requirejs/require.js"
+        data-main="/app/config"></script>
+<!-- /build -->
+</body>
+</html>

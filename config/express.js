@@ -35,7 +35,11 @@ module.exports = function (app, passport) {
   }));
 
   // Static files middleware
-  app.use(express.static(config.root + '/public'));
+  if(env !== 'production')  {
+      app.use(express.static(config.root + '/client'));
+  } else {
+      app.use(express.static(config.root + '/public'));
+  }
 
   // Use winston on production
   var log;
@@ -118,35 +122,34 @@ module.exports = function (app, passport) {
 
     // This could be moved to view-helpers :-)
     app.use(function(req, res, next){
-      console.log('CSRF: ' + req.csrfToken());
       res.locals.csrf_token = req.csrfToken();
       next();
     });
   }
 
-  // Added other domains you want the server to give access to
-  // WARNING - Be careful with what origins you give access to
-  app.use(function(req, res, next) {
-    var allowedHost = [
-      'http://localhost:8000',
-      'chrome-extension://fdmmgilgnpjigdojojpjoooidkmcomcm' //postman - locally
-    ];
-
-    if(allowedHost.indexOf(req.headers.origin) !== -1) {
-      res.header('Access-Control-Allow-Credentials', true);
-      res.header('Access-Control-Allow-Origin', req.headers.origin)
-      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-      res.header('Access-Control-Allow-Headers', 'X-CSRFToken, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
-
-      // intercept OPTIONS method
-      if ('OPTIONS' == req.method) {
-        res.send(200);
-      }
-      else {
-        next();
-      }      
-    } else {
-      res.send({auth: false});
-    }
-  });
+  //// Added other domains you want the server to give access to
+  //// WARNING - Be careful with what origins you give access to
+  //app.use(function(req, res, next) {
+  //  var allowedHost = [
+  //    'http://localhost:8000',
+  //    'chrome-extension://fdmmgilgnpjigdojojpjoooidkmcomcm' //postman - locally
+  //  ];
+  //
+  //  if(allowedHost.indexOf(req.headers.origin) !== -1) {
+  //    res.header('Access-Control-Allow-Credentials', true);
+  //    res.header('Access-Control-Allow-Origin', req.headers.origin)
+  //    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  //    res.header('Access-Control-Allow-Headers', 'X-CSRFToken, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+  //
+  //    // intercept OPTIONS method
+  //    if ('OPTIONS' == req.method) {
+  //      res.send(200);
+  //    }
+  //    else {
+  //      next();
+  //    }
+  //  } else {
+  //    res.send({auth: false});
+  //  }
+  //});
 };

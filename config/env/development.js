@@ -4,5 +4,6 @@
  */
 
 module.exports = {
-  db: 'mongodb://localhost/docgenerator_dev'
+  db: 'mongodb://localhost/rdesk_dev',
+  client: 'client/'
 };
